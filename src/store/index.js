@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import axios from 'axios';
 
 export default createStore({
   state: {
@@ -50,7 +51,12 @@ export default createStore({
     screenMovie(state,movie){
       state.screenMovie = movie;
       localStorage.setItem('screenData',JSON.stringify(state.screenMovie));
-    },    
+    },
+    addLocalMovie(state, localMovie){
+      console.log(localMovie)
+      state.moviesApi = [...state.moviesApi, localMovie];
+      localStorage.setItem('moviesData',JSON.stringify(state.moviesApi ));
+    }   
   },
   actions: {
     getDataApiMovie({commit}){
