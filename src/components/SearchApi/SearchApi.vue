@@ -14,6 +14,15 @@
                 }
             },
         },
+        methods:{
+          callApi(){
+            if(this.$store.getters.validationApi){
+              swal("Missing information", "Please complete all fields", "info");
+            }else{
+              this.$store.dispatch('getDataApiMovie')
+            }
+          }
+        }
     }
 </script>
 
@@ -44,7 +53,7 @@
             />
           </div>
           <div class="row ms-0.6">
-            <button class="btn btn-primary" type="submit">Search Movies</button>
+            <button class="btn btn-primary" type="submit" @click="callApi">Search Movies</button>
           </div>
         </div>
       </form>
