@@ -26,6 +26,25 @@ export default createStore({
       ))
       localStorage.setItem('moviesData',JSON.stringify(newDataCompleted));
       state.moviesApi = [...state.moviesApi.filter(el => el.local), ...newDataCompleted]
+    },
+    addFavorites(state, payload){
+      const movieFilter = state.favorites.find(el => el.id === payload.id);
+      if(!movieFilter){
+        state.favorites.push(payload);
+        localStorage.setItem('favoriteData',JSON.stringify(state.favorites));
+      }
+    },
+    deleteFavorites(state,payload){
+      state.favorites = state.favorites.filter(el => el.id !== payload.id);
+      localStorage.setItem('favoriteData',JSON.stringify(state.favorites));
+    },
+    deleteMovie(state,payload){
+      state.moviesApi = state.moviesApi.filter(el => el.id !== payload);
+      localStorage.setItem('moviesData',JSON.stringify(state.moviesApi));
+    },
+    screenMovie(state,movie){
+      state.screenMovie = movie;
+      localStorage.setItem('screenData',JSON.stringify(state.screenMovie));
     },    
   },
   actions: {
