@@ -5,7 +5,7 @@
         <div class="col-12 col-sm-5 mb-4">
           <h4>Search Movie</h4>
           <hr />
-          <form >
+          <form @submit.prevent="onSubmit">
             <div class="input-group mb-3 ">
               <input
                 type="text"
