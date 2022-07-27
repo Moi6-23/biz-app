@@ -1,30 +1,72 @@
+<script setup>
+    import { createApp } from 'vue';
+    createApp({
+      data(){
+        return{
+          isActive: true
+        }
+      }
+    })
+</script>
+
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="navbar-collapse">
+      <div class="nav-nav">
+        <router-link
+          to="/"
+          :class="{ isActive }"
+          @click="isActive = !isActive"
+          class="title-nav nav-link"
+          >Home</router-link
+        >
+        <router-link
+          to="/add"
+          :class="{ isActive }"
+          @click="isActive = !isActive"
+          class="title-nav nav-link"
+          >Add Movie</router-link
+        >
+        <router-link
+          to="/filter"
+          :class="{ isActive }"
+          @click="isActive = !isActive"
+          class="title-nav nav-link"
+          >Filter Movie</router-link
+        >
+        <router-link
+          to="/favorites"
+          :class="{ isActive }"
+          @click="isActive = !isActive"
+          class="title-nav nav-link"
+          >Favorites</router-link
+        >
+      </div>
+    </div>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.navbar {
+  height: 70px;
 }
-
-nav {
-  padding: 30px;
+.nav-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.title-nav {
+  margin-left: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 5px;
+  color: white;
+  text-decoration: none;
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.title-nav:hover {
+  font-size: 18px;
+  transition: font-size 0.2s;
 }
 </style>
