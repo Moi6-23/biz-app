@@ -12,6 +12,11 @@ export default createStore({
     screenMovie:localStorage.getItem('screenData') ? JSON.parse(localStorage.getItem('screenData')) : [],
   },
   getters: {
+    validationApi(state){
+      if(state.category === ''){
+        return true;
+      } 
+    }
   },
   mutations: {
     addMovieCategory(state, movieInput){
@@ -50,7 +55,6 @@ export default createStore({
   actions: {
     getDataApiMovie({commit}){
       const URL = `${this.state.BASEURL}search/movie?api_key=${this.state.APIKEY}&page=${this.state.number}&query=${this.state.category}`;
-      //console.log(URL)
       axios(URL)
         .then(response => {
         console.log(response.data.results)
