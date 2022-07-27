@@ -35,7 +35,7 @@
                           <div class='card-body'>
                               <h5 class='card-title'>{{dataFilter.title}}</h5>
                               <p class='card-title'>{{dataFilter.release_date}}</p>
-                              <p class='card-text'>{{dataFilter.overview}}</p>
+                              <router-link to='/home/screen' @click="screenMovie(dataFilter)">More...</router-link>
                           </div>
                       </div>
                   </div>
@@ -49,19 +49,23 @@
 
 <script>
 import {ref} from 'vue';
-
+import { useStore } from 'vuex';
 
 export default {
     name:'FilterMovie',
     setup(){
         const searchInput = ref('');
         const dataFilters = ref([]);
+        const store = useStore();
         const filterMovie = JSON.parse(localStorage.getItem('moviesData'));
         const dataFilterClick = () => {
             let titleFilter = searchInput.value.toLowerCase();
             dataFilters.value = filterMovie.filter((el) => el.title.toLowerCase().includes(titleFilter));
         }
-        return {searchInput, dataFilters, dataFilterClick}
+        const screenMovie = (movie) => {
+          store.commit('screenMovie', movie)
+        }
+        return {searchInput, dataFilters, dataFilterClick, screenMovie}
     }
 }
 </script>
